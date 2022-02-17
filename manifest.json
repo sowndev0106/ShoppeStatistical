@@ -1,0 +1,28 @@
+{
+    "name": "Thống kê shopee",
+    "description": "Tiện ích giúp mọi người có thể xem thống kê số tiền đã tiêu trên shopee",
+    "version": "1.5",
+    "manifest_version": 3,
+    "action": {
+        "default_title": "to do some thing",
+        "default_icon": "./logo/shopee-logos.png",
+        "default_popup": "template/startbootstrap-sb-admin-2-gh-pages/index.html"
+    },
+    "icons": {
+        "128": "./logo/shopee-logos.png"
+    },
+    "permissions": [
+        "<all_urls>",
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://shopee.vn/*"
+            ],
+            "js": [
+                "js/main.js"
+            ]
+        }
+    ]
+}
