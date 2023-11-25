@@ -136,7 +136,7 @@ function showProductBoughtInMonthAndYear(month, year) {
         var selectYearProduct = document.getElementById('statistical-with-year-product')
 
 
-        if (!e.name || e.model == undefined ) return ``;
+        if (!e.name || e.model == undefined) return ``;
         var name = e.name.length > 55 ? e.name.substring(0, 52) + '...' : e.name;
         var model = e.model.length > 30 ? e.model.substring(0, 30) + '...' : e.model;
         name = name.replace('-', ''); //  '3D - Khổ' => '3D---Kho'

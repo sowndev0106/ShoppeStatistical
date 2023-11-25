@@ -1,0 +1,291 @@
+{
+    "data": {
+        "status": {
+            "status_label": {
+                "text": "label_on_the_way",
+                "tl": false
+            },
+            "header_text": {
+                "text": "order_status_text_to_receive_others_not_delivered_integrated_cod",
+                "tl": false,
+                "attributes": [
+                    {
+                        "name": "expected_receive_time",
+                        "value": "1701314567",
+                        "type": 7
+                    }
+                ]
+            },
+            "header_image": "https://deo.shopeemobile.com/shopee/shopee-orderprocessing-live-vn/to_receive.png",
+            "popup_msg": {
+                "text": "order_tooltip_to_receive_others_not_delivered_integrated_cod",
+                "tl": false
+            },
+            "list_view_text": {
+                "text": "order_list_text_to_receive_cod_not_delivered",
+                "tl": false
+            },
+            "list_view_status_label": {
+                "text": "label_to_receive",
+                "tl": false
+            }
+        },
+        "shipping": {
+            "masked_carrier": {
+                "text": "Nhanh",
+                "tl": true
+            },
+            "fulfilment_carrier": {
+                "text": "Ninja Van",
+                "tl": true
+            },
+            "tracking_number": "SPEVN233133632942I",
+            "tracking_info": {
+                "driver_phone": "",
+                "driver_name": "",
+                "ctime": 1700896190,
+                "description": "Đơn hàng đã đến bưu cục TP. Đà Lạt, VN",
+                "type": 0,
+                "pin_code": ""
+            },
+            "is_multi_parcel": false,
+            "num_parcels": 1,
+            "parcel_no": 1,
+            "can_modify_fulfilment_channel": false,
+            "fulfilment_carrier_channel_id": 50023,
+            "disable_edit_fulfilment_channel_reason": "",
+            "return_on_the_spot_info": {
+                "is_eligible": true,
+                "learn_more_url": "https://shopee.vn/m/shopee-dong-kiem"
+            }
+        },
+        "address": {
+            "shipping_name": "Nguyễn hồng nhi",
+            "shipping_phone": "84358491767",
+            "shipping_address": "Quầy thuốc tây Hồng Nhi, tổ 5, ấp thành tây, xã thành long huyện châu thành tỉnh tây ninh, Xã Thành Long, Huyện Châu Thành, Tây Ninh",
+            "is_buyer_address_editable": false
+        },
+        "info_card": {
+            "parcel_cards": [
+                {
+                    "parcel_no": 1,
+                    "forder_id": "5307262121951232670",
+                    "parcel_status_info": {
+                        "label": {
+                            "text": "label_forder_shipping",
+                            "tl": false
+                        },
+                        "tooltip": {
+                            "text": "",
+                            "tl": false
+                        },
+                        "status": 2
+                    },
+                    "shop_info": {
+                        "shop_id": 445399670,
+                        "shop_name": "L'angfarm - Đặc Sản Đà Lạt",
+                        "user_id": 445419247,
+                        "username": "langfarmdacsandalat",
+                        "portrait": "d25364f4a402b7e36f4361ba8acc6255",
+                        "shop_tag": 1
+                    },
+                    "product_info": {
+                        "item_groups": [
+                            {
+                                "items": [
+                                    {
+                                        "item_id": 14309446161,
+                                        "model_id": 140428053497,
+                                        "shop_id": 445399670,
+                                        "name": "Bông atisô sấy khô L'angfarm, 225g, bịch",
+                                        "model_name": "",
+                                        "image": "c1380e1064503e5ba3ccc95ff91748d4",
+                                        "amount": 1,
+                                        "ext_info": {
+                                            "add_on_deal_id": 0,
+                                            "is_add_on_sub_item": false,
+                                            "free_return_day": 7,
+                                            "is_wholesale": false,
+                                            "is_pre_order": false,
+                                            "is_membership_gift": false,
+                                            "is_free_return": false
+                                        },
+                                        "status": 1,
+                                        "item_price": 22680000000,
+                                        "price_before_discount": 25200000000,
+                                        "order_price": 22680000000,
+                                        "snapshot_id": 25533576470
+                                    }
+                                ],
+                                "num_items": 1
+                            }
+                        ],
+                        "total_num_items": 1
+                    },
+                    "payment_info": {
+                        "currency": "VND",
+                        "total_price": 21859200000,
+                        "info_rows": [
+                            {
+                                "info_label": {
+                                    "text": "label_odp_merchandise_subtotal",
+                                    "tl": false
+                                },
+                                "info_value": {
+                                    "value": "22680000000",
+                                    "type": 5
+                                }
+                            },
+                            {
+                                "info_label": {
+                                    "text": "label_odp_shipping",
+                                    "tl": false,
+                                    "attributes": [
+                                        {
+                                            "name": "shipping_carrier",
+                                            "type": 1,
+                                            "label": {
+                                                "text": "Nhanh",
+                                                "tl": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                "info_value": {
+                                    "value": "3280000000",
+                                    "type": 5
+                                }
+                            },
+                            {
+                                "info_label": {
+                                    "text": "label_odp_shipping_discount_subtotal",
+                                    "tl": false
+                                },
+                                "info_value": {
+                                    "value": "-2480000000",
+                                    "type": 5
+                                },
+                                "info_tooltip": {
+                                    "tooltip": {
+                                        "text": "label_odp_free_shipping_voucher_applied",
+                                        "tl": false
+                                    }
+                                }
+                            },
+                            {
+                                "info_label": {
+                                    "text": "label_odp_shopee_voucher_applied",
+                                    "tl": false
+                                },
+                                "info_value": {
+                                    "value": "-1360800000",
+                                    "type": 5
+                                }
+                            },
+                            {
+                                "info_label": {
+                                    "text": "label_odp_redeemed_number_coins",
+                                    "tl": false,
+                                    "attributes": [
+                                        {
+                                            "name": "number",
+                                            "value": "260000000",
+                                            "type": 10
+                                        }
+                                    ]
+                                },
+                                "info_value": {
+                                    "value": "-260000000",
+                                    "type": 5
+                                }
+                            }
+                        ]
+                    },
+                    "extra_info": {
+                        "is_shipment_grouped": false,
+                        "cod_amount_to_pay": 21859200000
+                    },
+                    "logistics_id": "0"
+                }
+            ],
+            "is_multi_parcel": false,
+            "subtotal": 21859200000,
+            "final_total": 21859200000,
+            "vat_amount": 0,
+            "amount_paid": 0,
+            "livestream_info": {
+                "session_id": 8046349,
+                "title": "SĂN SALE CÙNG YUMSEA 25.11"
+            }
+        },
+        "payment_method": {
+            "payment_method": 6,
+            "payment_channel_name": {
+                "text": "Thanh toán khi nhận hàng",
+                "tl": true
+            },
+            "can_change_payment_method": false
+        },
+        "processing_info": {
+            "order_sn": "231124ET644H57",
+            "info_rows": [
+                {
+                    "info_label": {
+                        "text": "label_odp_order_time",
+                        "tl": false
+                    },
+                    "info_value": {
+                        "value": "1700809960",
+                        "type": 8
+                    }
+                },
+                {
+                    "info_label": {
+                        "text": "label_odp_ship_time",
+                        "tl": false
+                    },
+                    "info_value": {
+                        "value": "1700895809",
+                        "type": 8
+                    }
+                }
+            ]
+        },
+        "secondary_buttons": [
+            {
+                "id": 15
+            }
+        ],
+        "primary_buttons": [
+            {
+                "id": 47,
+                "popup_msg": {
+                    "text": "msg_please_check_ship_status_with_seller",
+                    "tl": false
+                }
+            }
+        ],
+        "ereceipt": {
+            "support_buyer_request_ereceipt": true,
+            "shop_type": 3
+        },
+        "components": [
+            13,
+            0,
+            19,
+            1,
+            2,
+            4,
+            11,
+            6,
+            8,
+            14,
+            9,
+            10
+        ],
+        "list_type": 8,
+        "notification_bar": {
+            "content": ""
+        }
+    }
+}

@@ -6,13 +6,16 @@
     "action": {
         "default_title": "Edit error show product bought",
         "default_icon": "./logo/shopee-logos.png",
-        "default_popup": "template/startbootstrap-sb-admin-2-gh-pages/index.html"
+        "default_popup": "view/index.html"
     },
     "icons": {
         "128": "./logo/shopee-logos.png"
     },
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ],
     "permissions": [
-        "<all_urls>",
         "storage"
     ],
     "content_scripts": [

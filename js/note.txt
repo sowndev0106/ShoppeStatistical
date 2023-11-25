@@ -1,0 +1,5 @@
+label_odp_merchandise_subtotal : Tổng tiền hàng
+label_odp_shipping: Phí vận chuyển
+label_odp_shipping_discount_subtotal: Giảm giá phí vận chuyển
+label_odp_shopee_voucher_applied: Voucher từ Shopee
+label_odp_redeemed_number_coins: Shopee xu

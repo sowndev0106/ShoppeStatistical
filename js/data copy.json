@@ -1,0 +1,292 @@
+{
+    "data": {
+        "status": {
+            "status_label": {
+                "text": "label_order_completed",
+                "tl": false
+            },
+            "header_text": {
+                "text": "order_status_text_completed_thank_you_shopping",
+                "tl": false
+            },
+            "header_image": "https://deo.shopeemobile.com/shopee/shopee-orderprocessing-live-vn/completed.png",
+            "list_view_status_label": {
+                "text": "label_completed",
+                "tl": false
+            }
+        },
+        "shipping": {
+            "masked_carrier": {
+                "text": "Nhanh",
+                "tl": true
+            },
+            "fulfilment_carrier": {
+                "text": "SPX Express",
+                "tl": true
+            },
+            "tracking_number": "SPXVN03206236036B",
+            "tracking_info": {
+                "driver_phone": "",
+                "driver_name": "",
+                "ctime": 1699929096,
+                "description": "Đơn hàng đã được giao thành công",
+                "type": 0,
+                "pin_code": ""
+            },
+            "is_multi_parcel": false,
+            "num_parcels": 1,
+            "parcel_no": 1,
+            "can_modify_fulfilment_channel": false,
+            "fulfilment_carrier_channel_id": 50021,
+            "disable_edit_fulfilment_channel_reason": ""
+        },
+        "address": {
+            "shipping_name": "Nguyễn hồng nhi",
+            "shipping_phone": "84358491767",
+            "shipping_address": "Quầy thuốc tây Hồng Nhi, tổ 5, ấp thành tây, xã thành long huyện châu thành tỉnh tây ninh, Xã Thành Long, Huyện Châu Thành, Tây Ninh",
+            "is_buyer_address_editable": false
+        },
+        "info_card": {
+            "parcel_cards": [
+                {
+                    "parcel_no": 1,
+                    "forder_id": "5298446835853826872",
+                    "parcel_status_info": {
+                        "label": {
+                            "text": "label_forder_delivered",
+                            "tl": false
+                        },
+                        "tooltip": {
+                            "text": "",
+                            "tl": false
+                        },
+                        "status": 5
+                    },
+                    "shop_info": {
+                        "shop_id": 816505872,
+                        "shop_name": "FNKvision-2",
+                        "user_id": 816492081,
+                        "username": "fnkvision_2",
+                        "portrait": "c2cf933f0d9203d82673982f4f0fce25",
+                        "shop_tag": 3
+                    },
+                    "product_info": {
+                        "item_groups": [
+                            {
+                                "items": [
+                                    {
+                                        "item_id": 23304392127,
+                                        "model_id": 165035921451,
+                                        "shop_id": 816505872,
+                                        "name": "Camera IP Wifi 5G Yoosee FNKvision 5.0MP 360 độ, thế hệ mới 5 ăng ten, Full HD, xem đêm có màu, phiên bản tiếng việt",
+                                        "model_name": "Yoosee5MP A15/5G+128",
+                                        "image": "sg-11134201-22110-c9u3nepmx3jv65",
+                                        "amount": 1,
+                                        "ext_info": {
+                                            "add_on_deal_id": 0,
+                                            "is_add_on_sub_item": false,
+                                            "free_return_day": 0,
+                                            "is_wholesale": false,
+                                            "is_pre_order": false,
+                                            "is_membership_gift": false,
+                                            "is_free_return": false
+                                        },
+                                        "status": 1,
+                                        "item_price": 43500000000,
+                                        "price_before_discount": 75000000000,
+                                        "order_price": 43500000000,
+                                        "snapshot_id": 23510509453
+                                    }
+                                ],
+                                "num_items": 1
+                            },
+                            {
+                                "items": [
+                                    {
+                                        "item_id": 20681555212,
+                                        "model_id": 184410209716,
+                                        "shop_id": 816505872,
+                                        "name": "Camera Fnkvision 2 mắt / 1 mắt Yoosee 8.0MP - xem 360 độ không góc chết, ban đêm có màu, hai giao diện quan sát",
+                                        "model_name": "Yoosee 8MP Q42+128G",
+                                        "image": "vn-11134207-7r98o-lkyqgs7bducd30",
+                                        "amount": 2,
+                                        "ext_info": {
+                                            "add_on_deal_id": 0,
+                                            "is_add_on_sub_item": false,
+                                            "free_return_day": 0,
+                                            "is_wholesale": false,
+                                            "is_pre_order": false,
+                                            "is_membership_gift": false,
+                                            "is_free_return": false
+                                        },
+                                        "status": 1,
+                                        "item_price": 52900000000,
+                                        "price_before_discount": 120000000000,
+                                        "order_price": 52900000000,
+                                        "snapshot_id": 28510504886
+                                    }
+                                ],
+                                "num_items": 1
+                            }
+                        ],
+                        "total_num_items": 2
+                    },
+                    "payment_info": {
+                        "currency": "VND",
+                        "total_price": 134370000000,
+                        "info_rows": [
+                            {
+                                "info_label": {
+                                    "text": "label_odp_merchandise_subtotal",
+                                    "tl": false
+                                },
+                                "info_value": {
+                                    "value": "149300000000",
+                                    "type": 5
+                                }
+                            },
+                            {
+                                "info_label": {
+                                    "text": "label_odp_shipping",
+                                    "tl": false,
+                                    "attributes": [
+                                        {
+                                            "name": "shipping_carrier",
+                                            "type": 1,
+                                            "label": {
+                                                "text": "Nhanh",
+                                                "tl": false
+                                            }
+                                        }
+                                    ]
+                                },
+                                "info_value": {
+                                    "value": "4600000000",
+                                    "type": 5
+                                }
+                            },
+                            {
+                                "info_label": {
+                                    "text": "label_odp_shipping_discount_subtotal",
+                                    "tl": false
+                                },
+                                "info_value": {
+                                    "value": "-4600000000",
+                                    "type": 5
+                                },
+                                "info_tooltip": {
+                                    "tooltip": {
+                                        "text": "label_odp_free_shipping_voucher_applied",
+                                        "tl": false
+                                    }
+                                }
+                            },
+                            {
+                                "info_label": {
+                                    "text": "label_odp_shopee_voucher_applied",
+                                    "tl": false
+                                },
+                                "info_value": {
+                                    "value": "-14930000000",
+                                    "type": 5
+                                }
+                            }
+                        ]
+                    },
+                    "extra_info": {
+                        "is_shipment_grouped": false,
+                        "cod_amount_to_pay": 134370000000
+                    },
+                    "logistics_id": "0"
+                }
+            ],
+            "is_multi_parcel": false,
+            "subtotal": 134370000000,
+            "final_total": 134370000000,
+            "vat_amount": 0,
+            "amount_paid": 134370000000
+        },
+        "payment_method": {
+            "payment_method": 6,
+            "payment_channel_name": {
+                "text": "Thanh toán khi nhận hàng",
+                "tl": true
+            },
+            "can_change_payment_method": false
+        },
+        "processing_info": {
+            "order_sn": "231111BXQXJRA6",
+            "info_rows": [
+                {
+                    "info_label": {
+                        "text": "label_odp_order_time",
+                        "tl": false
+                    },
+                    "info_value": {
+                        "value": "1699711773",
+                        "type": 8
+                    }
+                },
+                {
+                    "info_label": {
+                        "text": "label_odp_payment_time",
+                        "tl": false
+                    },
+                    "info_value": {
+                        "value": "1699930145",
+                        "type": 8
+                    }
+                },
+                {
+                    "info_label": {
+                        "text": "label_odp_ship_time",
+                        "tl": false
+                    },
+                    "info_value": {
+                        "value": "1699852922",
+                        "type": 8
+                    }
+                },
+                {
+                    "info_label": {
+                        "text": "label_odp_completed_time",
+                        "tl": false
+                    },
+                    "info_value": {
+                        "value": "1699936515",
+                        "type": 8
+                    }
+                }
+            ]
+        },
+        "secondary_buttons": [
+            {
+                "id": 15
+            }
+        ],
+        "primary_buttons": [
+            {
+                "id": 24
+            }
+        ],
+        "ereceipt": {
+            "support_buyer_request_ereceipt": false,
+            "shop_type": 0
+        },
+        "components": [
+            13,
+            0,
+            19,
+            1,
+            2,
+            4,
+            11,
+            6,
+            8,
+            14,
+            9,
+            10
+        ],
+        "list_type": 3
+    }
+}
