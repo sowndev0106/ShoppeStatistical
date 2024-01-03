@@ -24,9 +24,7 @@
 
 </head>
 
-
-
-<body id="page-top" style="min-width: 500px;">
+<body id="page-top" style="min-width: 550px;">
     <!-- Form required login-->
 
     <!-- Page Wrapper -->
@@ -96,16 +94,28 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <div class="card shadow mb-4 " style="background-color: #f36100d3;">
-                            <div class="pl-3 pr-3 py-3 d-flex flex-row align-items-center justify-content-between ">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4 w-100">
+                        <div class="card shadow mb-4 " style="background-color: #f36100d3; width: 100%;">
+                            <div
+                                class="pl-3 pr-3 py-3 d-flex flex-row align-items-center justify-content-between gap-2">
 
-                                <label for="year" class="m-0 font-weight-bold  " style="color: #fff">Chọn năm thống
+                                <label for="year" class=" font-weight-bold  " style="color: #fff; width: 20%;    text-align: left;">Chọn năm thống
                                     kê</label>
-                                <select class="form-control" name="" id="statistical-with-year">
-                                    <option>Bạn chưa mua gì cả</option>
 
-                                </select>
+                                <div style="width: 40%;">
+                                    <select class="form-control" name="" id="statistical-with-year">
+                                        <option value="">Tất cả</option>
+                                    </select>
+                                </div>
+
+                                <div style="width: 40%;     text-align: right;">
+                                    <button type="button" class="btn btn-info " id="btn-sync">
+                                        <div class=" d-flex align-items-center">
+                                            <i class="fas fa-sync mr-2"></i>
+                                            <span>Đồng bộ dữ liệu</span>
+                                        </div>
+                                    </button>
+                                </div>
 
                             </div>
                         </div>
@@ -122,7 +132,7 @@
                                                 Tổng tiền trả
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <div id='payableTotal'> 200.000.000 VND</div>
+                                                <div id='pay-total'> 0 VND</div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -139,9 +149,9 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Tổng số đơn - sản phẩm đã giao</div>
+                                                Tổng số đơn đã hoặc đang giao</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <div id="quantity-bill-and-product">22</div>
+                                                <div id="quantity-order-success">0</div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -154,6 +164,30 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Tổng số sản phẩm đã hoặc đang mua</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div id="quantity-purchase-product">0</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-volleyball-ball  fa-2x text-gray-300"></i>
+                                            <!-- <i class=""></i> -->
+                                            <!-- <i class="fas fa-dollar-sign "></i> -->
+                                            <!-- <i class="fas fa-shipping-fast"></i> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-warning shadow h-100 py-2">
@@ -163,7 +197,7 @@
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Tổng phí vận chuyển phải trả </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <div id="shippingFeeTotal">20</div>
+                                                <div id="shipping-fee-total">0</div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -183,7 +217,7 @@
                                                 Tổng tiền tiết kiệm (Vourcher)</div>
                                             <!-- <i class=""></i> -->
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                <div id="saveTotal">215,000 VND</div>
+                                                <div id="save-total">0 VND</div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -194,7 +228,27 @@
                             </div>
                         </div>
 
-
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Tổng số đơn đã hủy / Giao Không thành công</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div id="quantity-order-cancel">0</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-window-close fa-2x text-gray-300"></i>
+                                            <!-- <i class=""></i> -->
+                                            <!-- <i class="fas fa-dollar-sign "></i> -->
+                                            <!-- <i class="fas fa-shipping-fast"></i> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Content Row -->
@@ -206,12 +260,8 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary ">Tiền tiêu mỗi tháng trong năm
-
-                                        <select class='btn border border-primary '
-                                            style='width:65px; font-size:13px; color:rgba(0, 0, 0, 0.774);  padding: 0;'
-                                            id="statistical-with-month-in-year">
-                                        </select>
+                                    <h6 class="m-0 font-weight-bold text-primary "
+                                        id="label-statistical-pay-earch-month-by-year">Tiền tiêu mỗi tháng trong năm
                                     </h6>
                                 </div>
                                 <!-- Card Body -->
