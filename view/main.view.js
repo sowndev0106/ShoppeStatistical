@@ -1,9 +1,48 @@
 var orders = [];
+let year = new Date().getFullYear();
 
-const getDataOrders = async () => {
+const formatterCurrency = (number) =>
+  number.toLocaleString("it-IT", { style: "currency", currency: "VND" });
+
+(async function main() {
+  // get data from storage
+  orders = await getDataOrders();
+  console.log(orders);
+
+  renderData();
+
+  addEventListener();
+})();
+
+function renderData() {
+  renderSelectYear();
+
+  renderSelectYearProduct();
+
+  renderCardOverviewByYear();
+
+  renderPurchaseProductByMonth(new Date().getMonth() + 1);
+}
+
+const syncData = async () => {
+  alert(
+    "Vui lòng Đăng nhập vào SHOPEE và KHÔNG tắt trang web trong quá trình đồng bộ dữ liệu"
+  );
+
+  chrome.storage.local.set({
+    orders: orders,
+    status: "",
+    time: "",
+  });
+
+  // open shoppe in new tab
+  chrome.tabs.create({ url: "https://shopee.vn/" });
+};
+
+async function getDataOrders() {
   return new Promise((resolve, reject) => {
-    chrome.storage.local.get("allOrder", function (data) {
-      const newOrders = data.allOrder.map((order) => {
+    chrome.storage.local.get("orders", function (data) {
+      const newOrders = data.orders.map((order) => {
         order.processing_info = {
           order_time: new Date(order.processing_info.order_time),
           payment_time: new Date(order.processing_info.payment_time),
@@ -31,36 +70,34 @@ const getDataOrders = async () => {
       return resolve(newOrders);
     });
   });
-};
+}
 
-(async function main() {
-  // get data from storage
-  orders = await getDataOrders();
-  console.log(orders);
-  renderData();
-})();
-
-const formatterCurrency = (number) =>
-  number.toLocaleString("it-IT", { style: "currency", currency: "VND" });
-
-function renderData() {
-  const lable = {};
-  const processingInfos = [];
-
-  orders.forEach((element) => {});
-
-  renderSelectYear();
-
-  renderCardOverviewByYear();
-
+function addEventListener() {
   const selectYear = document.getElementById("statistical-with-year");
   selectYear.addEventListener("change", (e) => {
-    renderCardOverviewByYear(e.target.value);
-    showChartPaymentByYear(e.target.value);
+    year = e.target.value;
+
+    renderCardOverviewByYear(year);
+    showChartPaymentByYear(year);
+    renderPurchaseProductByMonth(new Date().getMonth() + 1);
+  });
+
+  // list purchase product
+  const btnMonths = document.querySelectorAll(".btn-month");
+  btnMonths.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const month = e.target.value;
+      renderPurchaseProductByMonth(month);
+    });
+  });
+
+  const btnSyncData = document.getElementById("btn-sync-data");
+  btnSyncData.addEventListener("click", (e) => {
+    syncData();
   });
 }
 
-const renderSelectYear = () => {
+function renderSelectYear() {
   // get all year from processingInfos.ship_time
   const years = new Set();
   orders.forEach((order) => {
@@ -76,9 +113,28 @@ const renderSelectYear = () => {
     selectYear.appendChild(option);
   });
   showChartPaymentByYear(years.values().next().value);
-};
+}
 
-const renderCardOverviewByYear = (year) => {
+function renderSelectYearProduct() {
+  // get all year from processingInfos.ship_time
+  const years = new Set();
+  orders.forEach((order) => {
+    years.add(order.processing_info.order_time_year);
+  });
+
+  const selectYear = document.getElementById(
+    "select-statistical-purchase-product-by-year"
+  );
+
+  years.forEach((year) => {
+    const option = document.createElement("option");
+    option.value = year;
+    option.innerText = year;
+    selectYear?.appendChild(option);
+  });
+}
+
+function renderCardOverviewByYear(year) {
   const payTotalElement = document.getElementById("pay-total");
   const quantityOrderSuccessElement = document.getElementById(
     "quantity-order-success"
@@ -93,6 +149,8 @@ const renderCardOverviewByYear = (year) => {
   const quantityOrderCancelElement = document.getElementById(
     "quantity-order-cancel"
   );
+  const coinsElement = document.getElementById("coin-total");
+
   const result = orders.reduce(
     (acc, order) => {
       if (!year || order.processing_info.order_time_year == year) {
@@ -109,7 +167,8 @@ const renderCardOverviewByYear = (year) => {
             checkNumber(parcel?.payment_info.shipping) -
             checkNumber(parcel?.payment_info.shipping_discount_subtotal);
 
-          acc.coins += checkNumber(parcel?.payment_info.coins);
+          acc.coins +=
+            checkNumber(parcel?.payment_info.redeemed_number_coins) / 100000;
 
           acc.saveTotal +=
             checkNumber(parcel?.payment_info.shipping_discount_subtotal) +
@@ -148,14 +207,22 @@ const renderCardOverviewByYear = (year) => {
   );
 
   payTotalElement.innerText = formatterCurrency(result.payTotal / 100000);
-  quantityOrderSuccessElement.innerText = result.quantityOrderSuccess;
-  quantityPurchaseProductElement.innerText = result.quantityPurchaseProduct;
+
+  quantityOrderSuccessElement.innerText = result.quantityOrderSuccess + " Đơn";
+
+  quantityPurchaseProductElement.innerText =
+    result.quantityPurchaseProduct + " Sản phẩm";
+
   shippingFeeTotalElement.innerText = formatterCurrency(
     result.shippingFeeTotal / 100000
   );
+
   saveTotalElement.innerText = formatterCurrency(result.saveTotal / 100000);
-  quantityOrderCancelElement.innerText = result.quantityOrderCancel;
-};
+
+  quantityOrderCancelElement.innerText = result.quantityOrderCancel + " Đơn";
+
+  coinsElement.innerText = result.coins + " Xu";
+}
 
 // label_on_the_way
 // label_order_cancelled
@@ -170,7 +237,10 @@ function checkNumber(number) {
 }
 
 function showChartPaymentByYear(year) {
-  // const labelElement = document.getElementById("label-statistical-pay-earch-month-by-year");
+  const labelElement = document.getElementById(
+    "label-statistical-pay-earch-month-by-year"
+  );
+  labelElement.innerHTML = `Tiền tiêu mỗi tháng trong năm ${year}`;
   // labelElement?.innerText = `Tiền tiêu mỗi tháng trong năm ${year}`;
 
   const totalPaymentEachMonthByYear = [
@@ -206,8 +276,6 @@ function showChartPaymentByYear(year) {
       });
     }
   });
-
-  console.log(totalPaymentEachMonthByYear);
 
   // Area Chart Example
   document.getElementById(
@@ -328,7 +396,6 @@ function showChartPaymentByYear(year) {
             var value = totalPaymentEachMonthByYear[month];
             if (tooltipItem.yLabel != 0) {
               // showProductBoughtInMonthAndYear(month, Number(data.year));
-              console.log("Month : " + month);
               return `Đã tiêu: ${number_format(tooltipItem.yLabel)} VNĐ - ${
                 value.quantityOrder
               } Đơn `;
@@ -340,4 +407,105 @@ function showChartPaymentByYear(year) {
       },
     },
   });
+}
+
+function renderPurchaseProductByMonth(month) {
+  const label = document.getElementById("label-purchase-product");
+  const purchaseProductsElement = document.getElementById("purchase-products");
+
+  label.innerText = `Sản phẩm đã mua trong tháng ${month} năm ${year}`;
+
+  const btnMonths = document.querySelectorAll(".btn-month");
+  btnMonths.forEach((btn) => {
+    btn.classList.remove("btn-outline-primary");
+  });
+  const btnMonth = document.getElementById(`btn-month-${month}`);
+  btnMonth.classList.add("btn-outline-primary");
+
+  let listProducts = [];
+
+  orders.forEach((order) => {
+    if (
+      order.processing_info.order_time_year == year &&
+      order.status != "label_order_cancelled" &&
+      order.processing_info.order_time.getMonth() + 1 == month
+    ) {
+      listProducts.push(...order.items);
+    }
+  });
+
+  // group listProducts by itemId and amount ++
+  listProducts = listProducts.reduce((acc, product) => {
+    const index = acc.findIndex((item) => item.itemId == product.itemId);
+    if (index == -1) {
+      acc.push(product);
+    } else {
+      acc[index].amount += product.amount;
+    }
+    return acc;
+  }, []);
+
+  if (listProducts.length == 0) {
+    purchaseProductsElement.innerHTML = `
+    <span class="  d-flex justify-content-center align-items-center  text-danger " style="font-size:15px">
+     Bạn chưa mua gì trong tháng ${month}/${year} </span>
+    `;
+    return;
+  }
+
+  purchaseProductsElement.innerHTML = "";
+
+  purchaseProductsElement.innerHTML = listProducts
+    .map((product) => {
+      if (!product.name || product.model_name == undefined) return ``;
+      var name =
+        product.name.length > 55
+          ? product.name.substring(0, 52) + "..."
+          : product.name;
+      var model =
+        product.model_name.length > 30
+          ? product.model_name.substring(0, 30) + "..."
+          : product.model_name;
+
+      name = name.replace("-", ""); //  '3D - Khổ' => '3D---Kho'
+
+      var urlProduct =
+        "https://shopee.vn/" +
+        name.replace(/ +/g, "-") +
+        "-i." +
+        product.shopId +
+        "." +
+        product.itemId;
+
+      return `
+      <div class="row align-items-center item data-orderId=${product.orderId}">
+          <div class="col-2  bg-gradient-light"
+              style=" width: 100px; height: 50px; padding: 0; display: flex;">
+              <img src="https://cf.shopee.vn/file/${
+                product.image
+              }"  class="card-img" alt="...">
+          </div>
+          <div class="col-8  d-flex lign-items-start flex-column justify-content-center pr-0">
+              <a href="${urlProduct} " target="_blank" class="card-title text-dark mb-0 pb-0 " style="font-size:12px">
+                  ${name}
+              </a>
+              <small class=""  style="font-size:10px"> Loại hàng: ${model}</small>
+              <span class="card-text text-danger" style="font-size:15px"> ${formatterCurrency(
+                (product.item_price / 100000) * product.amount
+              )} </span>
+          </div>
+          <div
+              class="col-2 d-flex lign-items-start flex-column justify-content-center pl-0 pr-0">
+              <p class="text-center " style="font-size:12px">X ${checkNumber(
+                product.amount
+              )} </p>
+              <a class="text-center" style="font-size:12px" href="https://shopee.vn/user/purchase/order/${
+                product.orderId
+              }" target="_blank" ><small>Đơn hàng
+                  </small></a>
+          </div>
+      </div>
+      `;
+    })
+    .join("");
 }

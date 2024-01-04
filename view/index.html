@@ -99,8 +99,7 @@
                             <div
                                 class="pl-3 pr-3 py-3 d-flex flex-row align-items-center justify-content-between gap-2">
 
-                                <label for="year" class=" font-weight-bold  " style="color: #fff; width: 20%;    text-align: left;">Chọn năm thống
-                                    kê</label>
+                                <label for="year" class=" font-weight-bold  " style="color: #fff; width: 20%;    text-align: left;">Chọn năm thống kê</label>
 
                                 <div style="width: 40%;">
                                     <select class="form-control" name="" id="statistical-with-year">
@@ -109,7 +108,7 @@
                                 </div>
 
                                 <div style="width: 40%;     text-align: right;">
-                                    <button type="button" class="btn btn-info " id="btn-sync">
+                                    <button type="button" class="btn btn-info " id="btn-sync-data">
                                         <div class=" d-flex align-items-center">
                                             <i class="fas fa-sync mr-2"></i>
                                             <span>Đồng bộ dữ liệu</span>
@@ -190,11 +189,11 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card border-left-dark shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
                                                 Tổng phí vận chuyển phải trả </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                                 <div id="shipping-fee-total">0</div>
@@ -228,6 +227,27 @@
                             </div>
                         </div>
 
+                           <!-- Earnings (Monthly) Card Example -->
+                           <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Tổng xu đã sử dụng</div>
+                                            <!-- <i class=""></i> -->
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div id="coin-total">0 VND</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-coins fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
@@ -241,9 +261,6 @@
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-window-close fa-2x text-gray-300"></i>
-                                            <!-- <i class=""></i> -->
-                                            <!-- <i class="fas fa-dollar-sign "></i> -->
-                                            <!-- <i class="fas fa-shipping-fast"></i> -->
                                         </div>
                                     </div>
                                 </div>
@@ -274,46 +291,31 @@
                         </div>
                         <!-- Pie Chart -->
                         <div class="col-xl-6 col-lg-6">
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-4 " >
                                 <span class="font-weight-bold text-dark text-center mt-2">
-                                    Sản phẩm đã mua <small> <br> (Chưa tính phí vận chuyển và mã giảm giá)</small>
+                                   <span id="label-purchase-product"> Sản phẩm đã mua</span> <small> <br> (Chưa tính phí vận chuyển và mã giảm giá)</small>
                                 </span>
                                 <!-- Card Header - Dropdown -->
                                 <div
-                                    class="card-header  py-2 d-flex flex-row align-items-center justify-content-between pt-0 ">
-
-                                    <label class="font-weight-bold text-secondary m-0"
-                                        for="statistical-with-month-product">
-                                        Tháng
+                                    class="card-header" >
+                                    <label class="font-weight-bold text-secondary mb-0 mr-2"   for="statistical-with-month-product">
+                                        Tháng: 
                                     </label>
-                                    <select class='btn border border-secondary '
-                                        style='width:65px; font-size:13px; color:rgba(0, 0, 0, 0.774);  padding: 0;'
-                                        id="statistical-with-month-product">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </select>
-                                    <label class="font-weight-bold text-secondary m-0"
-                                        for="statistical-with-year-product">
-                                        Năm
-                                    </label>
-                                    <select class='btn border border-secondary '
-                                        style='width:65px; font-size:13px; color:rgba(0, 0, 0, 0.774);  padding: 0;'
-                                        id="statistical-with-year-product">
-                                    </select>
+                                    <button class="btn btn-sm btn-month " id="btn-month-1" value="1" >1</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-2" value="2" >2</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-3" value="3" >3</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-4" value="4" >4</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-5" value="5" >5</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-6" value="6" >6</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-7" value="7" >7</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-8" value="8" >8</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-9" value="9" >9</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-10" value="10" >10</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-11" value="11" >11</button>
+                                    <button class="btn btn-sm btn-month " id="btn-month-12" value="12" >12</button>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body " id='items'>
-                                    <!-- <div class="row item ">
+                                <div class="card-body " id='purchase-products'  style="  overflow-x: hidden; overflow-y: scroll; height: 320px;">
                                         <div class="col-2  bg-gradient-light"
                                             style=" width: 100px; height: 50px; padding: 0; display: flex;">
                                             <img src="/logo/backround_1400_560FInal.png" class="card-img" alt="...">
@@ -332,8 +334,7 @@
                                             <a class="text-center" style="font-size:12px" href="./"><small>Đơn hàng
                                                 </small></a>
                                         </div>
-                                    </div> -->
-
+                                    </div> 
 
                                 </div>
 
@@ -352,11 +353,37 @@
 
     <!-- Footer -->
     <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Contact with email: nguyenthanhson162001@gmail.com</span>
+    <div class="d-flex flex-column align-items-center">
+            <small>Follow & feedback me</small>
+            <div class=" d-flex justify-content-center ">
+                <div>
+                    <a class="item-contact ml-2 mr-2" target="_blank" style="color: #4267B2;"
+                        href="https://www.facebook.com/162001son/">
+                        <img src="..//icons/facebook.png" alt="" width="20px">
+                    </a>
+                </div>
+                <div>
+                    <a class="item-contact ml-2 mr-2" style="color: #CE493C;"
+                        href="mailto:nguyenthanhson162001.com">
+                        <img src="..//icons/gmail.png" alt="" width="20px">
+                    </a>
+                </div>
+                <div>
+                    <a class="item-contact ml-2 mr-2" target="_blank" style="color: #FF0000;"
+                        href="https://www.youtube.com/channel/UCsDgKKk7iBqBlCjJjlEScPg">
+                        <img src="..//icons/youtube.png" alt="" width="20px">
+                    </a>
+                </div>
+                <div>
+                    <a class="item-contact ml-2 mr-2" target="_blank" style="color: #0A66C2;"
+
+                        href="https://www.linkedin.com/in/sowndev/">
+                        <img src="..//icons/linkedin.png" alt="" width="20px">
+                        
+                    </a>
+                </div>
             </div>
-        </div>
+    </div>
     </footer>
     <!-- End of Footer -->
 

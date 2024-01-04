@@ -1,7 +1,7 @@
 {
     "name": "Thống kê shopee",
     "description": "Tiện ích giúp mọi người có thể xem thống kê số tiền đã tiêu trên shopee",
-    "version": "1.6",
+    "version": "3.0",
     "manifest_version": 3,
     "action": {
         "default_title": "Edit error show product bought",

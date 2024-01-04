@@ -1,46 +1,48 @@
-let tongDonHang = 0;
-let tongTienDuocGiamMggShopee = 0;
-let tongTienDuocGiamMggShopeeShop = 0;
-let tongTienChiTieu = 0;
-let tongTienTietKiem = 0;
-let tongTienHang = 0;
-let tongTienVanChuyenChuaGiam = 0;
-let tongTienVanChuyenDuocGiam = 0;
-let tongSanPhamDaMua = 0;
-let trangThaiDonHangConKhong = true;
 let coin_earn = 0;
 let si = 8;
-let tongTienVanChuyenPhaiTra = 0;
 let time = {};
-let offset = 0;
 const timeSleep = 1000; //1
 const limit = 20; //20
 const maximumLoop = 1000; //1000
 
 async function getOrders() {
+  updateStatusSyncData([], "SYNCING");
   const allOrder = [];
   let loop = 0;
-  while (loop < maximumLoop) {
-    let url = `https://shopee.vn/api/v4/order/get_all_order_and_checkout_list?limit=${limit}&offset=${offset}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    if (!data?.data?.order_data?.details_list?.length) {
-      break;
+  let offset = 0;
+
+  try {
+    while (loop < maximumLoop) {
+      let url = `https://shopee.vn/api/v4/order/get_all_order_and_checkout_list?limit=${limit}&offset=${offset}`;
+      let response = await fetch(url);
+      let data = await response.json();
+
+      if (!data?.data?.order_data?.details_list?.length) {
+        break;
+      }
+
+      const orders = await Promise.all(
+        data?.data?.order_data?.details_list.map(async (order) =>
+          getOrderDetail(order.info_card.order_id)
+        )
+      );
+      const ordersClean = orders.filter((order) => order != null);
+
+      allOrder.push(...ordersClean);
+
+      updateStatusSyncData(allOrder, "SYNCING");
+
+      offset += limit;
+      loop++;
+      await sleep(timeSleep);
     }
-    const orders = await Promise.all(
-      data?.data?.order_data?.details_list.map(async (order) =>
-        getOrderDetail(order.info_card.order_id)
-      )
-    );
+  } catch (error) {
+    console.log(error);
 
-    allOrder.push(...orders.filter((order) => order != null));
-
-    offset += limit;
-    loop++;
-    await sleep(timeSleep);
+    updateStatusSyncData(allOrder, "ERROR");
   }
-  alert("Đã lấy đủ dữ liệu");
-  // console.log({ allOrder: allOrder.sort((a, b) => a - b) })
+
+  updateStatusSyncData(allOrder, "DONE");
 
   return allOrder;
 }
@@ -117,11 +119,15 @@ async function getOrderDetail(orderId) {
       },
     };
   });
+
   order.items = [];
+
   order.parcel?.forEach((parcel) => {
     parcel.itemsGroup.forEach((group) => {
       group.items.forEach((item) => {
         order.items.push({
+          shopId: parcel?.shop?.shopId,
+          orderId: orderId,
           itemId: item?.itemId,
           model_id: item?.model_id,
           name: item?.name,
@@ -137,11 +143,14 @@ async function getOrderDetail(orderId) {
   });
 
   order.subtotal = data.info_card.subtotal;
+
   order.final_total = data.info_card.final_total;
+
   order.payment_method = {
     payment_method: data.payment_method?.payment_method,
     payment_channel_name: data.payment_method?.payment_channel_name?.text,
   };
+
   order.processing_info = {
     order_time: convertTime(
       getValueFromInfoRowsByLable(
@@ -179,15 +188,37 @@ function getValueFromInfoRowsByLable(info_rows, lable) {
     info_rows.find((row) => row.info_label.text == lable)?.info_value.value
   );
 }
-
-async function asyncData() {
-  const allOrder = await getOrders();
-  console.log(allOrder);
-  localStorage.setItem("allOrder", JSON.stringify(allOrder));
+async function updateStatusSyncData(orders, status) {
+  // localStorage.setItem("statistic-shopee-orders", JSON.stringify(orders));
+  // localStorage.setItem("statistic-shopee-status-sync", status);
+  // localStorage.setItem("statistic-shopee-time", new Date());
 
   chrome.storage.local.set({
-    allOrder: allOrder,
+    orders: orders,
+    status: status,
+    time: new Date().toLocaleString(),
   });
+}
+
+async function asyncData() {
+  const lastTimeSync = new Date((await chrome.storage.local.get("time")).time);
+
+  // check lastTimeSync is Invalid Date
+  console.log("Last sync data " + lastTimeSync?.toLocaleString());
+  const timeSync = 1000 * 60 * 60; // 1h
+  if (
+    isNaN(lastTimeSync?.getTime()) ||
+    new Date() - new Date(lastTimeSync) > timeSync
+  ) {
+    console.log("------------------------------------------- Get order ");
+
+    await getOrders();
+  }
+
+  console.log(
+    "------------------------------------------- Get order DONE " +
+      chrome.runtime.id
+  );
 }
 
 asyncData();
